@@ -86,6 +86,7 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -194,7 +195,7 @@
                               <x:Boolean x:Key="IsPinned">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Ввод фильма" sap:VirtualizedContainerService.HintSize="484,238" sap2010:WorkflowViewState.IdRef="InputDialog_16" IsPassword="False" Label="Введите название фильма (с маленькой буквы)" Title="Film name">
+                          <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Ввод фильма" sap:VirtualizedContainerService.HintSize="484,238" sap2010:WorkflowViewState.IdRef="InputDialog_16" IsPassword="False" Label="Введите название фильма" Title="Film name">
                             <ui:InputDialog.Result>
                               <OutArgument x:TypeArguments="x:String">[strFilms]</OutArgument>
                             </ui:InputDialog.Result>
@@ -472,7 +473,7 @@
                                               </InArgument>
                                             </Assign.Value>
                                           </Assign>
-                                          <If sap2010:Annotation.AnnotationText="В этом условии проверяем орфографию. Если в введенном нами фильме есть ошибки, то робот предлагает её исправить, а пользователь решает, исправлять или нет. Если ввод был корректным, то выходит из условия" Condition="[movieName1.ToLower &lt;&gt; Films And strExsist1]" sap:VirtualizedContainerService.HintSize="562,1227" sap2010:WorkflowViewState.IdRef="If_45">
+                                          <If sap2010:Annotation.AnnotationText="В этом условии проверяем орфографию. Если в введенном нами фильме есть ошибки, то робот предлагает её исправить, а пользователь решает, исправлять или нет. Если ввод был корректным, то выходит из условия" Condition="[movieName1.ToLower &lt;&gt; Films.ToLower And strExsist1]" sap:VirtualizedContainerService.HintSize="562,1227" sap2010:WorkflowViewState.IdRef="If_45">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -592,7 +593,7 @@
                                                 </InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <If Condition="[movieName2.ToLower &lt;&gt; Films]" sap:VirtualizedContainerService.HintSize="562,1228" sap2010:WorkflowViewState.IdRef="If_47">
+                                            <If Condition="[movieName2.ToLower &lt;&gt; Films.ToLower]" sap:VirtualizedContainerService.HintSize="562,1228" sap2010:WorkflowViewState.IdRef="If_47">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -1352,6 +1353,22 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ModifyDate>
+              <If Condition="[File.Exists(&quot;Result&quot;)]" sap:VirtualizedContainerService.HintSize="1838,237" sap2010:WorkflowViewState.IdRef="If_62">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Else>
+                  <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="Result">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CreateDirectory>
+                </If.Else>
+              </If>
               <If sap2010:Annotation.AnnotationText="В этом условии проверяем существование Excel файла. Если файл существует, то он производит запись данных ниже уже существующих. Если файла не существует, то он создается" Condition="[File.Exists(&quot;Result\&quot; +ResultDate + &quot;.xlsm&quot;)]" sap:VirtualizedContainerService.HintSize="1838,747" sap2010:WorkflowViewState.IdRef="If_50">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1460,7 +1477,7 @@
             </Sequence>
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="Film.ru" sap:VirtualizedContainerService.HintSize="1796,8358" sap2010:WorkflowViewState.IdRef="Sequence_258">
+            <Sequence DisplayName="Film.ru" sap:VirtualizedContainerService.HintSize="1796,7273" sap2010:WorkflowViewState.IdRef="Sequence_258">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="Films" />
                 <Variable x:TypeArguments="sd:DataTable" Name="DataTable" />
@@ -1506,7 +1523,7 @@
                               <x:Boolean x:Key="IsPinned">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" sap:VirtualizedContainerService.HintSize="484,238" sap2010:WorkflowViewState.IdRef="InputDialog_20" IsPassword="False" Label="Введите название фильма (с маленькой буквы)" Title="Ввод фильма">
+                          <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" sap:VirtualizedContainerService.HintSize="484,238" sap2010:WorkflowViewState.IdRef="InputDialog_20" IsPassword="False" Label="Введите название фильма" Title="Ввод фильма">
                             <ui:InputDialog.Result>
                               <OutArgument x:TypeArguments="x:String">[Films]</OutArgument>
                             </ui:InputDialog.Result>
@@ -1598,19 +1615,19 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:InterruptibleDoWhile>
-              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="1754,4856" sap2010:WorkflowViewState.IdRef="OpenBrowser_5" UiBrowser="[browSess]" Url="https://www.film.ru/">
+              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="1754,3494" sap2010:WorkflowViewState.IdRef="OpenBrowser_5" UiBrowser="[browSess]" Url="https://www.film.ru/">
                 <ui:OpenBrowser.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                     </ActivityAction.Argument>
-                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1720,4715" sap2010:WorkflowViewState.IdRef="ForEachRow_10">
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1720,3353" sap2010:WorkflowViewState.IdRef="ForEachRow_10">
                       <ui:ForEachRow.Body>
                         <ActivityAction x:TypeArguments="sd:DataRow">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                           </ActivityAction.Argument>
-                          <Sequence sap:VirtualizedContainerService.HintSize="1686,4596" sap2010:WorkflowViewState.IdRef="Sequence_265">
+                          <Sequence sap:VirtualizedContainerService.HintSize="1686,3234" sap2010:WorkflowViewState.IdRef="Sequence_265">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1668,14 +1685,14 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:IsMatch>
-                            <If Condition="[Exist]" sap:VirtualizedContainerService.HintSize="1644,3860" sap2010:WorkflowViewState.IdRef="If_52">
+                            <If Condition="[Exist]" sap:VirtualizedContainerService.HintSize="1644,2498" sap2010:WorkflowViewState.IdRef="If_52">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="1295,3703" sap2010:WorkflowViewState.IdRef="Sequence_292">
+                                <Sequence sap:VirtualizedContainerService.HintSize="1295,2341" sap2010:WorkflowViewState.IdRef="Sequence_292">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1726,7 +1743,7 @@
                                             </InArgument>
                                           </Assign.Value>
                                         </Assign>
-                                        <If Condition="[Films &lt;&gt; movieName1.ToLower]" sap:VirtualizedContainerService.HintSize="562,1171" sap2010:WorkflowViewState.IdRef="If_55">
+                                        <If Condition="[Films.ToLower &lt;&gt; movieName1.ToLower]" sap:VirtualizedContainerService.HintSize="562,1171" sap2010:WorkflowViewState.IdRef="If_55">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -1847,7 +1864,7 @@
                                             </InArgument>
                                           </Assign.Value>
                                         </Assign>
-                                        <If Condition="[Films &lt;&gt; movieName2.ToLower]" sap:VirtualizedContainerService.HintSize="562,1171" sap2010:WorkflowViewState.IdRef="If_60">
+                                        <If Condition="[Films.ToLower &lt;&gt; movieName2.ToLower]" sap:VirtualizedContainerService.HintSize="562,1171" sap2010:WorkflowViewState.IdRef="If_60">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -1928,7 +1945,7 @@
                                       </Sequence>
                                     </If.Else>
                                   </If>
-                                  <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="1253,1905" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
+                                  <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="1253,543" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
                                     <ui:IfElseIf.ConditionBlocks>
                                       <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                                         <ui:IfElseIfBlock BlockType="If" Condition="[Films.ToLower = movieName1.ToLower]">
@@ -1943,8 +1960,8 @@
                                               </Sequence.Variables>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
                                               <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'STRONG'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
@@ -2475,6 +2492,22 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:ModifyDate>
+              <If Condition="[File.Exists(&quot;Result&quot;)]" sap:VirtualizedContainerService.HintSize="1754,237" sap2010:WorkflowViewState.IdRef="If_63">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Else>
+                  <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="Result">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CreateDirectory>
+                </If.Else>
+              </If>
               <If Condition="[File.Exists(&quot;Result\&quot; +ResultDate + &quot;.xlsm&quot;)]" sap:VirtualizedContainerService.HintSize="1754,705" sap2010:WorkflowViewState.IdRef="If_58">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
