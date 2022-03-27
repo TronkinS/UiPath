@@ -1,0 +1,8 @@
+Sub Workbook_Open()
+
+Worksheets("Sheet1").Columns("A:I").AutoFit
+ Range("A:I").Select
+With Selection
+        .HorizontalAlignment = xlCenter
+    End With
+End Sub
