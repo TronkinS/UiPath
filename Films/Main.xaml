@@ -86,7 +86,6 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -1461,7 +1460,7 @@
             </Sequence>
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="Film.ru" sap:VirtualizedContainerService.HintSize="1796,6996" sap2010:WorkflowViewState.IdRef="Sequence_258">
+            <Sequence DisplayName="Film.ru" sap:VirtualizedContainerService.HintSize="1796,8358" sap2010:WorkflowViewState.IdRef="Sequence_258">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="Films" />
                 <Variable x:TypeArguments="sd:DataTable" Name="DataTable" />
@@ -1599,19 +1598,19 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:InterruptibleDoWhile>
-              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="1754,3494" sap2010:WorkflowViewState.IdRef="OpenBrowser_5" UiBrowser="[browSess]" Url="https://www.film.ru/">
+              <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="1754,4856" sap2010:WorkflowViewState.IdRef="OpenBrowser_5" UiBrowser="[browSess]" Url="https://www.film.ru/">
                 <ui:OpenBrowser.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                     </ActivityAction.Argument>
-                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1720,3353" sap2010:WorkflowViewState.IdRef="ForEachRow_10">
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1720,4715" sap2010:WorkflowViewState.IdRef="ForEachRow_10">
                       <ui:ForEachRow.Body>
                         <ActivityAction x:TypeArguments="sd:DataRow">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                           </ActivityAction.Argument>
-                          <Sequence sap:VirtualizedContainerService.HintSize="1686,3234" sap2010:WorkflowViewState.IdRef="Sequence_265">
+                          <Sequence sap:VirtualizedContainerService.HintSize="1686,4596" sap2010:WorkflowViewState.IdRef="Sequence_265">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1669,14 +1668,14 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:IsMatch>
-                            <If Condition="[Exist]" sap:VirtualizedContainerService.HintSize="1644,2498" sap2010:WorkflowViewState.IdRef="If_52">
+                            <If Condition="[Exist]" sap:VirtualizedContainerService.HintSize="1644,3860" sap2010:WorkflowViewState.IdRef="If_52">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="1295,2341" sap2010:WorkflowViewState.IdRef="Sequence_292">
+                                <Sequence sap:VirtualizedContainerService.HintSize="1295,3703" sap2010:WorkflowViewState.IdRef="Sequence_292">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1929,12 +1928,12 @@
                                       </Sequence>
                                     </If.Else>
                                   </If>
-                                  <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="1253,543" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
+                                  <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="1253,1905" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
                                     <ui:IfElseIf.ConditionBlocks>
                                       <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
                                         <ui:IfElseIfBlock BlockType="If" Condition="[Films.ToLower = movieName1.ToLower]">
                                           <ui:IfElseIfBlock.Then>
-                                            <Sequence sap:VirtualizedContainerService.HintSize="228,66" sap2010:WorkflowViewState.IdRef="Sequence_281">
+                                            <Sequence sap:VirtualizedContainerService.HintSize="376,1428" sap2010:WorkflowViewState.IdRef="Sequence_281">
                                               <Sequence.Variables>
                                                 <Variable x:TypeArguments="x:String" Name="FilmName" />
                                                 <Variable x:TypeArguments="x:String" Name="Genre" />
@@ -1944,8 +1943,8 @@
                                               </Sequence.Variables>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
                                               <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'STRONG'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
